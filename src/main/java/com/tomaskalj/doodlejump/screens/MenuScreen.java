@@ -1,4 +1,4 @@
-package com.tomaskalj.screens;
+package com.tomaskalj.doodlejump.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -14,14 +14,14 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.tomaskalj.DoodleJump;
-import com.tomaskalj.common.Constants;
-import com.tomaskalj.common.Direction;
-import com.tomaskalj.common.DrawUtil;
-import com.tomaskalj.common.Ellipse;
-import com.tomaskalj.objects.DoodleBoy;
-import com.tomaskalj.objects.Platform;
-import com.tomaskalj.objects.StandardPlatform;
+import com.tomaskalj.doodlejump.DoodleJump;
+import com.tomaskalj.doodlejump.common.Constants;
+import com.tomaskalj.doodlejump.common.Direction;
+import com.tomaskalj.doodlejump.common.DrawUtil;
+import com.tomaskalj.doodlejump.common.Ellipse;
+import com.tomaskalj.doodlejump.objects.DoodleBoy;
+import com.tomaskalj.doodlejump.objects.Platform;
+import com.tomaskalj.doodlejump.objects.StandardPlatform;
 
 public class MenuScreen implements Screen {
 	private ShapeRenderer renderer;

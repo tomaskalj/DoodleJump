@@ -1,4 +1,4 @@
-package com.tomaskalj.objects;
+package com.tomaskalj.doodlejump.objects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 

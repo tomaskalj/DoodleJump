@@ -1,9 +1,9 @@
-package com.tomaskalj;
+package com.tomaskalj.doodlejump;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import com.tomaskalj.screens.MenuScreen;
+import com.tomaskalj.doodlejump.screens.MenuScreen;
 
 public class DoodleJump extends Game {
 	private int highScore;

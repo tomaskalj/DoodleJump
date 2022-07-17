@@ -1,12 +1,12 @@
-package com.tomaskalj.objects;
+package com.tomaskalj.doodlejump.objects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.tomaskalj.common.Constants;
-import com.tomaskalj.common.Direction;
+import com.tomaskalj.doodlejump.common.Constants;
+import com.tomaskalj.doodlejump.common.Direction;
 
 public class DoodleBoy {
 	private Rectangle rectangle;

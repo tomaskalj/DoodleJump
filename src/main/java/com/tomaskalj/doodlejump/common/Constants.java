@@ -1,4 +1,4 @@
-package com.tomaskalj.common;
+package com.tomaskalj.doodlejump.common;
 
 public final class Constants {
 	private Constants() {}

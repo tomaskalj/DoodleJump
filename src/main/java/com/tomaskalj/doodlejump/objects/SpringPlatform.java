@@ -1,7 +1,7 @@
-package com.tomaskalj.objects;
+package com.tomaskalj.doodlejump.objects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.tomaskalj.common.DrawUtil;
+import com.tomaskalj.doodlejump.common.DrawUtil;
 
 public class SpringPlatform extends Platform {
 	private Spring spring;

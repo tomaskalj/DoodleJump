@@ -1,4 +1,4 @@
-package com.tomaskalj.common;
+package com.tomaskalj.doodlejump.common;
 
 public class Ellipse {
 	private float x;

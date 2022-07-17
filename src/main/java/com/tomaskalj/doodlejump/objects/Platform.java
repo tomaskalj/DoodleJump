@@ -1,10 +1,10 @@
-package com.tomaskalj.objects;
+package com.tomaskalj.doodlejump.objects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
-import com.tomaskalj.common.Constants;
+import com.tomaskalj.doodlejump.common.Constants;
 
 public abstract class Platform {
 	protected Texture texture;

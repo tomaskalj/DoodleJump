@@ -1,8 +1,8 @@
-package com.tomaskalj.objects;
+package com.tomaskalj.doodlejump.objects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.tomaskalj.common.Constants;
-import com.tomaskalj.common.Direction;
+import com.tomaskalj.doodlejump.common.Constants;
+import com.tomaskalj.doodlejump.common.Direction;
 
 public class MovingPlatform extends Platform {
 	private Direction direction;
