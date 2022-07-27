@@ -143,6 +143,7 @@ public class GameScreen implements Screen {
                     paused = false;
                 } else if (menuButtonEllipse.contains(position.x, position.y)) {
                     game.setScreen(new MenuScreen(game));
+                    return;
                 }
             }
 
@@ -379,7 +380,7 @@ public class GameScreen implements Screen {
                 doodleBoy.moveX(5);
             }
 
-            if (Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
+            if (Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
                 doodleBoy.setDirection(Direction.LEFT);
                 doodleBoy.moveX(-5);
             }
