@@ -6,23 +6,23 @@ import com.badlogic.gdx.math.Circle;
 import com.tomaskalj.doodlejump.common.Constants;
 
 public class Projectile {
-	private Circle circle;
-	private Texture texture;
+    private Circle circle;
+    private Texture texture;
 
-	public Projectile(float x, float y) {
-		circle = new Circle(x, y, Constants.PROJECTILE_RADIUS);
-		texture = new Texture(Gdx.files.internal(String.format(Constants.FILE_LOCATION, "projectile.png")));
-	}
+    public Projectile(float x, float y) {
+        circle = new Circle(x, y, Constants.PROJECTILE_RADIUS);
+        texture = new Texture(Gdx.files.internal(String.format(Constants.FILE_LOCATION, "projectile.png")));
+    }
 
-	public Circle getCircle() {
-		return circle;
-	}
+    public Circle getCircle() {
+        return circle;
+    }
 
-	public Texture getTexture() {
-		return texture;
-	}
+    public Texture getTexture() {
+        return texture;
+    }
 
-	public void onRender(float delta) {
-		circle.y += Constants.PROJECTILE_VELOCITY * delta;
-	}
+    public void onRender(float delta) {
+        circle.y += Constants.PROJECTILE_VELOCITY * delta;
+    }
 }
