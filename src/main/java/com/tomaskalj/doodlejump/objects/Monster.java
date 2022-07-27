@@ -4,10 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Circle;
 import com.tomaskalj.doodlejump.common.Constants;
+import lombok.Getter;
+import lombok.Setter;
 
 public class Monster {
-    private Texture texture;
-    private Circle circle;
+    @Getter
+    private final Texture texture;
+    @Getter
+    private final Circle circle;
+    @Setter
     private boolean hit;
     private int xOffset;
     private boolean add;
@@ -17,24 +22,12 @@ public class Monster {
         circle = new Circle(x, y, Constants.MONSTER_RADIUS);
     }
 
-    public Texture getTexture() {
-        return texture;
-    }
-
-    public Circle getCircle() {
-        return circle;
-    }
-
     public float getX() {
         return circle.x;
     }
 
     public float getY() {
         return circle.y;
-    }
-
-    public void setHit(boolean hit) {
-        this.hit = hit;
     }
 
     public void onRender(float delta) {

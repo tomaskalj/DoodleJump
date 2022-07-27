@@ -35,7 +35,9 @@ import com.tomaskalj.doodlejump.objects.Platform;
 import com.tomaskalj.doodlejump.objects.Projectile;
 import com.tomaskalj.doodlejump.objects.SpringPlatform;
 import com.tomaskalj.doodlejump.objects.StandardPlatform;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class GameScreen implements Screen {
     private ShapeRenderer renderer;
     private OrthographicCamera camera;
@@ -63,11 +65,7 @@ public class GameScreen implements Screen {
     private Ellipse resumeButtonEllipse;
     private Ellipse menuButtonEllipse;
 
-    private DoodleJump game;
-
-    public GameScreen(DoodleJump game) {
-        this.game = game;
-    }
+    private final DoodleJump game;
 
     @Override
     public void show() {
@@ -378,12 +376,12 @@ public class GameScreen implements Screen {
         if (!doodleBoy.isHit()) {
             if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
                 doodleBoy.setDirection(Direction.RIGHT);
-                doodleBoy.getRectangle().x += 5;
+                doodleBoy.moveX(5);
             }
 
             if (Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
                 doodleBoy.setDirection(Direction.LEFT);
-                doodleBoy.getRectangle().x -= 5;
+                doodleBoy.moveX(-5);
             }
 
             if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
@@ -409,11 +407,9 @@ public class GameScreen implements Screen {
         for (int i = 0; i < platforms.size; i++) {
             Platform platform = platforms.get(i);
 
-            Rectangle doodleBoyFeet = new Rectangle(doodleBoy.getRectangle().x + (doodleBoy.getDirection() == Direction.LEFT ? Constants.DOODLE_BOY_LEFT_OFFSET : Constants.DOODLE_BOY_RIGHT_OFFSET), doodleBoy.getRectangle().y, doodleBoy.getRectangle().width, doodleBoy.getRectangle().height - Constants.DOODLE_BOY_HEIGHT_OFFSET);
-
             Rectangle topPlatform = new Rectangle(platform.getX() + Constants.PLATFORM_X_OFFSET, platform.getY() + Constants.PLATFORM_Y_OFFSET, platform.getRectangle().width, platform.getRectangle().height);
 
-            if (doodleBoy.isFalling() && doodleBoyFeet.overlaps(topPlatform)) {
+            if (doodleBoy.isFalling() && doodleBoy.getFeet().overlaps(topPlatform)) {
                 platform.onCollide(doodleBoy);
 
                 if (platform instanceof DisappearingPlatform) {

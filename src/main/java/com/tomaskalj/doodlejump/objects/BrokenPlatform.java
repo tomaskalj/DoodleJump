@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.tomaskalj.doodlejump.common.Constants;
 
 public class BrokenPlatform extends Platform {
-    private Texture fallingTexture;
+    private final Texture fallingTexture;
 
     public BrokenPlatform(float x, float y) {
         super(x, y, "broken_platform.png");

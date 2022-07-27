@@ -22,7 +22,9 @@ import com.tomaskalj.doodlejump.common.Ellipse;
 import com.tomaskalj.doodlejump.objects.DoodleBoy;
 import com.tomaskalj.doodlejump.objects.Platform;
 import com.tomaskalj.doodlejump.objects.StandardPlatform;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class MenuScreen implements Screen {
     private ShapeRenderer renderer;
     private OrthographicCamera camera;
@@ -39,11 +41,7 @@ public class MenuScreen implements Screen {
 
     private Ellipse playButtonEllipse;
 
-    private DoodleJump game;
-
-    public MenuScreen(DoodleJump game) {
-        this.game = game;
-    }
+    private final DoodleJump game;
 
     @Override
     public void show() {
@@ -123,11 +121,9 @@ public class MenuScreen implements Screen {
 
     private void checkCollisions() {
         for (Platform platform : platformLocations) {
-            Rectangle doodleBoyFeet = new Rectangle(doodleBoy.getRectangle().x + (doodleBoy.getDirection() == Direction.LEFT ? Constants.DOODLE_BOY_LEFT_OFFSET : Constants.DOODLE_BOY_RIGHT_OFFSET), doodleBoy.getRectangle().y, doodleBoy.getRectangle().width, doodleBoy.getRectangle().height - Constants.DOODLE_BOY_HEIGHT_OFFSET);
-
             Rectangle topPlatform = new Rectangle(platform.getX() + Constants.PLATFORM_X_OFFSET, platform.getY() + Constants.PLATFORM_Y_OFFSET, platform.getRectangle().width, platform.getRectangle().height);
 
-            if (doodleBoyFeet.overlaps(topPlatform)) {
+            if (doodleBoy.getFeet().overlaps(topPlatform)) {
                 platform.onCollide(doodleBoy);
             }
         }

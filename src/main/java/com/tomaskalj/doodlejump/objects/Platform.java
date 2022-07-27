@@ -5,7 +5,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.tomaskalj.doodlejump.common.Constants;
+import lombok.Getter;
 
+@Getter
 public abstract class Platform {
     protected Texture texture;
     protected Rectangle rectangle;
@@ -25,20 +27,12 @@ public abstract class Platform {
         texture.dispose();
     }
 
-    public Rectangle getRectangle() {
-        return rectangle;
-    }
-
     public float getX() {
         return rectangle.getX();
     }
 
     public float getY() {
         return rectangle.getY();
-    }
-
-    public Texture getTexture() {
-        return texture;
     }
 
     public boolean withinRange(float x, float y) {

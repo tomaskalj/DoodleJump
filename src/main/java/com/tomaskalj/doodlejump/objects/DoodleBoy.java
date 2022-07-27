@@ -7,23 +7,35 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.tomaskalj.doodlejump.common.Constants;
 import com.tomaskalj.doodlejump.common.Direction;
+import lombok.Getter;
+import lombok.Setter;
 
 public class DoodleBoy {
-    private Rectangle rectangle;
+    @Getter
+    private final Rectangle rectangle;
     private State state;
+
+    @Getter
+    @Setter
     private Direction direction;
-    private Texture rightFacingSprite;
-    private Texture leftFacingSprite;
-    private Texture shootingSprite;
-    private Texture jetpackRightSprite;
-    private Texture jetpackLeftSprite;
+
+    @Getter
+    private final Texture rightFacingSprite;
+    @Getter
+    private final Texture leftFacingSprite;
+    @Getter
+    private final Texture shootingSprite;
+    @Getter
+    private final Texture jetpackRightSprite;
+    @Getter
+    private final Texture jetpackLeftSprite;
 
     private long shootTime;
     private long jetpackTime;
 
     // Physics
-    private Vector2 position;
-    private Vector2 velocity;
+    private final Vector2 position;
+    private final Vector2 velocity;
 
     public DoodleBoy(float x, float y) {
         rectangle = new Rectangle(x, y, Constants.DOODLE_BOY_WIDTH, Constants.DOODLE_BOY_HEIGHT);
@@ -60,6 +72,7 @@ public class DoodleBoy {
         if (rectangle.x < 0) {
             rectangle.x = Constants.WORLD_WIDTH;
         }
+
         if (rectangle.x > Constants.WORLD_WIDTH) {
             rectangle.x = 0;
         }
@@ -91,6 +104,14 @@ public class DoodleBoy {
         }
     }
 
+    public Rectangle getFeet() {
+        return new Rectangle(rectangle.x + (direction == Direction.LEFT ? Constants.DOODLE_BOY_LEFT_OFFSET : Constants.DOODLE_BOY_RIGHT_OFFSET),
+                rectangle.y,
+                rectangle.width,
+                rectangle.height - Constants.DOODLE_BOY_HEIGHT_OFFSET
+        );
+    }
+
     public boolean isHit() {
         return state == State.HIT;
     }
@@ -99,36 +120,8 @@ public class DoodleBoy {
         return state == State.FALLING;
     }
 
-    public Rectangle getRectangle() {
-        return rectangle;
-    }
-
-    public Direction getDirection() {
-        return direction;
-    }
-
-    public void setDirection(Direction direction) {
-        this.direction = direction;
-    }
-
-    public Texture getRightFacingSprite() {
-        return rightFacingSprite;
-    }
-
-    public Texture getLeftFacingSprite() {
-        return leftFacingSprite;
-    }
-
-    public Texture getShootingSprite() {
-        return shootingSprite;
-    }
-
-    public Texture getJetpackRightSprite() {
-        return jetpackRightSprite;
-    }
-
-    public Texture getJetpackLeftSprite() {
-        return jetpackLeftSprite;
+    public void moveX(float amountX) {
+        rectangle.x += amountX;
     }
 
     public boolean justShot() {

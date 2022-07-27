@@ -4,8 +4,10 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.tomaskalj.doodlejump.screens.MenuScreen;
+import lombok.Getter;
 
 public class DoodleJump extends Game {
+    @Getter
     private int highScore;
 
     @Override
@@ -21,10 +23,6 @@ public class DoodleJump extends Game {
     @Override
     public void dispose() {
         super.dispose();
-    }
-
-    public int getHighScore() {
-        return highScore;
     }
 
     public void setHighScore(int highScore) {

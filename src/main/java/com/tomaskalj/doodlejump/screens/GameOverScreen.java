@@ -35,10 +35,10 @@ public class GameOverScreen implements Screen {
     private Ellipse playAgainButtonEllipse;
     private Ellipse menuButtonEllipse;
 
-    private DoodleBoy doodleBoy;
+    private final DoodleBoy doodleBoy;
 
-    private int score;
-    private DoodleJump game;
+    private final int score;
+    private final DoodleJump game;
 
     public GameOverScreen(int score, DoodleBoy doodleBoy, DoodleJump game) {
         this.score = score;

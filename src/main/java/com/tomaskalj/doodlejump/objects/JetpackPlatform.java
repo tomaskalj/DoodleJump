@@ -2,9 +2,11 @@ package com.tomaskalj.doodlejump.objects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.tomaskalj.doodlejump.common.DrawUtil;
+import lombok.Getter;
 
 public class JetpackPlatform extends Platform {
-    private Jetpack jetpack;
+    @Getter
+    private final Jetpack jetpack;
 
     public JetpackPlatform(float x, float y) {
         super(x, y, "platform.png");
@@ -24,9 +26,5 @@ public class JetpackPlatform extends Platform {
         if (jetpack.getTexture() != null) {
             jetpack.getTexture().dispose();
         }
-    }
-
-    public Jetpack getJetpack() {
-        return jetpack;
     }
 }
