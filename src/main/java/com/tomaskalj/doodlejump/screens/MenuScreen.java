@@ -20,8 +20,8 @@ import com.tomaskalj.doodlejump.common.Direction;
 import com.tomaskalj.doodlejump.common.DrawUtil;
 import com.tomaskalj.doodlejump.common.Ellipse;
 import com.tomaskalj.doodlejump.objects.DoodleBoy;
-import com.tomaskalj.doodlejump.objects.Platform;
-import com.tomaskalj.doodlejump.objects.StandardPlatform;
+import com.tomaskalj.doodlejump.objects.platforms.Platform;
+import com.tomaskalj.doodlejump.objects.platforms.StandardPlatform;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -151,9 +151,7 @@ public class MenuScreen implements Screen {
         font64.dispose();
         font28.dispose();
         playButton.dispose();
-        doodleBoy.getLeftFacingSprite().dispose();
-        doodleBoy.getRightFacingSprite().dispose();
-        doodleBoy.getShootingSprite().dispose();
+        doodleBoy.dispose();
 
         for (Platform platform : platformLocations) {
             platform.dispose();

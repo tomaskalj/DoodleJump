@@ -15,8 +15,7 @@ public class DoodleBoy {
     private final Rectangle rectangle;
     private State state;
 
-    @Getter
-    @Setter
+    @Getter @Setter
     private Direction direction;
 
     @Getter
@@ -35,9 +34,14 @@ public class DoodleBoy {
 
     // Physics
     private final Vector2 position;
+    @Getter
     private final Vector2 velocity;
 
     public DoodleBoy(float x, float y) {
+        this(x, y, new Vector2());
+    }
+
+    public DoodleBoy(float x, float y, Vector2 initialVelocity) {
         rectangle = new Rectangle(x, y, Constants.DOODLE_BOY_WIDTH, Constants.DOODLE_BOY_HEIGHT);
         state = State.FALLING;
         direction = Direction.RIGHT;
@@ -48,7 +52,15 @@ public class DoodleBoy {
         jetpackLeftSprite = new Texture(Gdx.files.internal(String.format(Constants.FILE_LOCATION, "doodle_jetpack_left.png")));
 
         position = new Vector2(x, y);
-        velocity = new Vector2();
+        velocity = initialVelocity;
+    }
+
+    public void dispose() {
+        rightFacingSprite.dispose();
+        leftFacingSprite.dispose();
+        shootingSprite.dispose();
+        jetpackRightSprite.dispose();
+        jetpackLeftSprite.dispose();
     }
 
     public void update(float delta) {

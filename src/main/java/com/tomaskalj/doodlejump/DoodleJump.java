@@ -20,11 +20,6 @@ public class DoodleJump extends Game {
         setScreen(new MenuScreen(this));
     }
 
-    @Override
-    public void dispose() {
-        super.dispose();
-    }
-
     public void setHighScore(int highScore) {
         this.highScore = highScore;
 

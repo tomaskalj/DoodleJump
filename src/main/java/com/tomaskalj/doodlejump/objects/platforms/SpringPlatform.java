@@ -1,7 +1,8 @@
-package com.tomaskalj.doodlejump.objects;
+package com.tomaskalj.doodlejump.objects.platforms;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.tomaskalj.doodlejump.common.DrawUtil;
+import com.tomaskalj.doodlejump.objects.Spring;
 import lombok.Getter;
 
 public class SpringPlatform extends Platform {

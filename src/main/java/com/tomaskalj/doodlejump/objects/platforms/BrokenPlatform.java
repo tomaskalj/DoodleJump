@@ -1,9 +1,10 @@
-package com.tomaskalj.doodlejump.objects;
+package com.tomaskalj.doodlejump.objects.platforms;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.tomaskalj.doodlejump.common.Constants;
+import com.tomaskalj.doodlejump.objects.DoodleBoy;
 
 public class BrokenPlatform extends Platform {
     private final Texture fallingTexture;

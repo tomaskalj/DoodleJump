@@ -42,7 +42,7 @@ public class GameOverScreen implements Screen {
 
     public GameOverScreen(int score, DoodleBoy doodleBoy, DoodleJump game) {
         this.score = score;
-        this.doodleBoy = new DoodleBoy(doodleBoy.getRectangle().x, Constants.WORLD_HEIGHT);
+        this.doodleBoy = new DoodleBoy(doodleBoy.getRectangle().x, Constants.WORLD_HEIGHT, doodleBoy.getVelocity());
         this.game = game;
     }
 
@@ -149,9 +149,7 @@ public class GameOverScreen implements Screen {
         batch.dispose();
         font64.dispose();
         font.dispose();
-        doodleBoy.getRightFacingSprite().dispose();
-        doodleBoy.getLeftFacingSprite().dispose();
-        doodleBoy.getShootingSprite().dispose();
+        doodleBoy.dispose();
         playAgainButton.dispose();
         menuButton.dispose();
     }

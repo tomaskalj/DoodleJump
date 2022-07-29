@@ -42,7 +42,7 @@ public final class Constants {
     public static final float PLATFORM_WIDTH = 48;
     public static final float PLATFORM_HEIGHT = 6; // 14 originally
 
-    public static final String FILE_LOCATION = "src/main/resources/assets/%s";
+    public static final String FILE_LOCATION = "assets/%s";
 
     public static final String GAME_TITLE = "doodle jump";
     public static final String GAME_OVER_TITLE = "game over!";

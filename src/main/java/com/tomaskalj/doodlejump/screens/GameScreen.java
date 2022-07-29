@@ -25,16 +25,16 @@ import com.tomaskalj.doodlejump.common.Direction;
 import com.tomaskalj.doodlejump.common.DrawUtil;
 import com.tomaskalj.doodlejump.common.Ellipse;
 import com.tomaskalj.doodlejump.common.Range;
-import com.tomaskalj.doodlejump.objects.BrokenPlatform;
-import com.tomaskalj.doodlejump.objects.DisappearingPlatform;
+import com.tomaskalj.doodlejump.objects.platforms.BrokenPlatform;
+import com.tomaskalj.doodlejump.objects.platforms.DisappearingPlatform;
 import com.tomaskalj.doodlejump.objects.DoodleBoy;
-import com.tomaskalj.doodlejump.objects.JetpackPlatform;
+import com.tomaskalj.doodlejump.objects.platforms.JetpackPlatform;
 import com.tomaskalj.doodlejump.objects.Monster;
-import com.tomaskalj.doodlejump.objects.MovingPlatform;
-import com.tomaskalj.doodlejump.objects.Platform;
+import com.tomaskalj.doodlejump.objects.platforms.MovingPlatform;
+import com.tomaskalj.doodlejump.objects.platforms.Platform;
 import com.tomaskalj.doodlejump.objects.Projectile;
-import com.tomaskalj.doodlejump.objects.SpringPlatform;
-import com.tomaskalj.doodlejump.objects.StandardPlatform;
+import com.tomaskalj.doodlejump.objects.platforms.SpringPlatform;
+import com.tomaskalj.doodlejump.objects.platforms.StandardPlatform;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -325,17 +325,25 @@ public class GameScreen implements Screen {
         int y = MathUtils.random(yMin, yMax - 10);
         double chance = Math.random();
 
+        // jetpack: 0.01        0.01
+        // broken: 0.05         0.06
+        // spring: 0.05         0.11
+        // disappearing: 0.1    0.21
+        // moving: 0.2          0.41
+        // standard: 0.49       0.90
+        // no platform: 0.1     1.00
+
         if (variant) {
-            if (chance <= 0.2) {
-                platform = new MovingPlatform(x, y);
-            } else if (chance <= 0.25) {
-                platform = new BrokenPlatform(x, y);
-            } else if (chance <= 0.35) {
-                platform = new DisappearingPlatform(x, y);
-            } else if (chance <= 0.4) {
-                platform = new SpringPlatform(x, y);
-            } else if (chance <= 0.41) {
+            if (chance <= 0.01) {
                 platform = new JetpackPlatform(x, y);
+            } else if (chance <= 0.06) {
+                platform = new BrokenPlatform(x, y);
+            } else if (chance <= 0.11) {
+                platform = new SpringPlatform(x, y);
+            } else if (chance <= 0.21) {
+                platform = new DisappearingPlatform(x, y);
+            } else if (chance <= 0.41) {
+                platform = new MovingPlatform(x, y);
             } else if (chance <= 0.9) {
                 platform = new StandardPlatform(x, y);
             }
@@ -455,7 +463,7 @@ public class GameScreen implements Screen {
                 }
             }
 
-            if (Math.random() < 0.1) {
+            if (Math.random() < 0.08) {
                 Monster monster = generateMonster();
                 if (monster != null) {
                     monsters.add(monster);
@@ -485,9 +493,7 @@ public class GameScreen implements Screen {
     public void hide() {
         renderer.dispose();
         batch.dispose();
-        doodleBoy.getRightFacingSprite().dispose();
-        doodleBoy.getLeftFacingSprite().dispose();
-        doodleBoy.getShootingSprite().dispose();
+        doodleBoy.dispose();
         platforms.forEach(Platform::dispose);
         platforms.clear();
         monsters.forEach(monster -> monster.getTexture().dispose());
