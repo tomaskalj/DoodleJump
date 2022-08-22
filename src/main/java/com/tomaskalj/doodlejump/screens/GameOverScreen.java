@@ -42,7 +42,7 @@ public class GameOverScreen implements Screen {
 
     public GameOverScreen(int score, DoodleBoy doodleBoy, DoodleJump game) {
         this.score = score;
-        this.doodleBoy = new DoodleBoy(doodleBoy.getRectangle().x, Constants.WORLD_HEIGHT, doodleBoy.getVelocity());
+        this.doodleBoy = new DoodleBoy(doodleBoy.getRectangle().x, Constants.WORLD_HEIGHT, doodleBoy.getStats(), doodleBoy.getVelocity());
         this.game = game;
     }
 
@@ -100,7 +100,7 @@ public class GameOverScreen implements Screen {
                 (Constants.WORLD_WIDTH - scoreLayout.width) / 2,
                 Constants.WORLD_HEIGHT - 200);
 
-        String highScoreText = "your high score: " + game.getHighScore();
+        String highScoreText = "your high score: " + doodleBoy.getStats().getHighScore();
         GlyphLayout highScoreLayout = new GlyphLayout(font, highScoreText);
         font.draw(batch, highScoreText,
                 (Constants.WORLD_WIDTH - highScoreLayout.width) / 2,

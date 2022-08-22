@@ -22,6 +22,7 @@ public abstract class Platform {
 
     public void onCollide(DoodleBoy doodleBoy) {
         doodleBoy.onPlatformCollide();
+        doodleBoy.getStats().incrementJumps();
     }
 
     public void dispose() {

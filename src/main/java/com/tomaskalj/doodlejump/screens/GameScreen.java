@@ -110,6 +110,7 @@ public class GameScreen implements Screen {
         }
 
         doodleBoy = new DoodleBoy(lowestPlatform.getX() + 35, lowestPlatform.getY() + 20);
+        doodleBoy.loadStats();
         doodleBoy.onPlatformCollide();
     }
 
@@ -373,11 +374,12 @@ public class GameScreen implements Screen {
 
     private void checkDeath() {
         if (doodleBoy.getRectangle().y < camera.position.y - Constants.WORLD_HEIGHT / 2f) {
-            game.setScreen(new GameOverScreen(score, doodleBoy, game));
-
-            if (score > game.getHighScore()) {
-                game.setHighScore(score);
+            if (score > doodleBoy.getStats().getHighScore()) {
+                doodleBoy.getStats().setHighScore(score);
             }
+            doodleBoy.writeStats();
+
+            game.setScreen(new GameOverScreen(score, doodleBoy, game));
         }
     }
 
@@ -397,6 +399,7 @@ public class GameScreen implements Screen {
                 if (!doodleBoy.justEquippedJetpack()) {
                     doodleBoy.setShot();
                     projectiles.add(new Projectile(doodleBoy.getRectangle().x + 9, doodleBoy.getRectangle().y + doodleBoy.getShootingSprite().getHeight()));
+                    doodleBoy.getStats().incrementShots();
                 }
             }
 
@@ -433,7 +436,9 @@ public class GameScreen implements Screen {
             Circle actualCircle = new Circle(monster.getX() + Constants.MONSTER_X_OFFSET, monster.getY() + Constants.MONSTER_Y_OFFSET, Constants.MONSTER_RADIUS);
 
             if (Intersector.overlaps(actualCircle, doodleBoy.getRectangle())) {
-                doodleBoy.onMonsterCollide(monster);
+                if (doodleBoy.onMonsterCollide(monster)) {
+                    doodleBoy.getStats().incrementMonstersJumpedOn();
+                }
             }
 
             for (int j = 0; j < projectiles.size; j++) {
@@ -444,6 +449,7 @@ public class GameScreen implements Screen {
                     projectiles.removeIndex(j);
                     monster.getTexture().dispose();
                     proj.getTexture().dispose();
+                    doodleBoy.getStats().incrementMonstersShot();
                 }
             }
         }

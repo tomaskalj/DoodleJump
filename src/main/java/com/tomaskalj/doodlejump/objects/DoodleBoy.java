@@ -1,9 +1,11 @@
 package com.tomaskalj.doodlejump.objects;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.tomaskalj.doodlejump.common.Constants;
 import com.tomaskalj.doodlejump.common.Direction;
@@ -11,6 +13,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class DoodleBoy {
+    @Getter
+    private StatsObject stats;
     @Getter
     private final Rectangle rectangle;
     private State state;
@@ -38,10 +42,11 @@ public class DoodleBoy {
     private final Vector2 velocity;
 
     public DoodleBoy(float x, float y) {
-        this(x, y, new Vector2());
+        this(x, y, new StatsObject(), new Vector2());
     }
 
-    public DoodleBoy(float x, float y, Vector2 initialVelocity) {
+    public DoodleBoy(float x, float y, StatsObject initialStats, Vector2 initialVelocity) {
+        stats = initialStats;
         rectangle = new Rectangle(x, y, Constants.DOODLE_BOY_WIDTH, Constants.DOODLE_BOY_HEIGHT);
         state = State.FALLING;
         direction = Direction.RIGHT;
@@ -61,6 +66,22 @@ public class DoodleBoy {
         shootingSprite.dispose();
         jetpackRightSprite.dispose();
         jetpackLeftSprite.dispose();
+    }
+
+    public void loadStats() {
+        FileHandle file = Gdx.files.local("stats.json");
+        if (file.exists()) {
+            Json json = new Json();
+            stats = json.fromJson(StatsObject.class, file.readString());
+        } else {
+            stats = new StatsObject();
+        }
+    }
+
+    public void writeStats() {
+        FileHandle file = Gdx.files.local("stats.json");
+        Json json = new Json();
+        file.writeString(json.toJson(stats), false);
     }
 
     public void update(float delta) {
@@ -105,15 +126,18 @@ public class DoodleBoy {
         state = State.JUMPING;
     }
 
-    public void onMonsterCollide(Monster monster) {
-        if (state == State.JUMPING) {
-            velocity.y = Constants.DOODLE_BOY_HIT_VELOCITY;
-            state = State.HIT;
-        } else if (state == State.FALLING) {
+    public boolean onMonsterCollide(Monster monster) {
+        // Return true if the monster was eliminated by being jumped on
+        if (state == State.FALLING) {
             monster.setHit(true);
             velocity.y = Constants.DOODLE_BOY_MONSTER_HIT_VELOCITY;
             state = State.JUMPING;
+            return true;
+        } else if (state == State.JUMPING) {
+            velocity.y = Constants.DOODLE_BOY_HIT_VELOCITY;
+            state = State.HIT;
         }
+        return false;
     }
 
     public Rectangle getFeet() {

@@ -7,23 +7,20 @@ import com.tomaskalj.doodlejump.screens.MenuScreen;
 import lombok.Getter;
 
 public class DoodleJump extends Game {
-    @Getter
-    private int highScore;
-
     @Override
     public void create() {
-        FileHandle file = Gdx.files.local("high_score.txt");
-        if (file.exists()) {
-            highScore = Integer.parseInt(file.readString());
-        }
+//        FileHandle file = Gdx.files.local("high_score.txt");
+//        if (file.exists()) {
+//            highScore = Integer.parseInt(file.readString());
+//        }
 
         setScreen(new MenuScreen(this));
     }
 
-    public void setHighScore(int highScore) {
-        this.highScore = highScore;
-
-        FileHandle file = Gdx.files.local("high_score.txt");
-        file.writeString(String.valueOf(highScore), false);
-    }
+//    public void setHighScore(int highScore) {
+//        this.highScore = highScore;
+//
+//        FileHandle file = Gdx.files.local("high_score.txt");
+//        file.writeString(String.valueOf(highScore), false);
+//    }
 }
